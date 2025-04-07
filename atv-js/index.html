@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="mudarCor()">Mudar Tema</button>
+
+    <input type="text" id="entrada" placeholder="Digite algo aqui">
+    <button onclick="mostrarTexto()">Mostrar</button>
+
+    <p id="saida"></p>
+
+    <button onclick="diminuir()">-</button>
+    <span id="numero">0</span>
+    <button onclick="aumentar()">+</button>
+
+    <input type="text" id="inputCor" placeholder="Ex: red, blue, #00ff00">
+
+    <form id="meuFormulario">
+        <label>Nome:</label><br>
+        <input type="text" id="nome" required><br><br>
+  
+        <label>E-mail:</label><br>
+        <input type="email" id="email" required><br><br>
+  
+        <label>Mensagem:</label><br>
+        <textarea id="mensagem" rows="4" required></textarea><br><br>
+  
+        <button type="submit">Enviar</button>
+      </form>
+  
+      <h2>Dados enviados:</h2>
+      <div id="resultado"></div>
+  
+    <script>
+      function mudarCor() {
+        document.body.style.backgroundColor = "blue";
+      }
+    
+      function mostrarTexto() {
+        const texto = document.getElementById('entrada').value;
+        document.getElementById('saida').innerText = texto;
+      }
+
+      let contador = 0;
+
+      function aumentar() {
+        contador++;
+        document.getElementById('numero').innerText = contador;
+      }
+
+      function diminuir() {
+        contador--;
+        document.getElementById('numero').innerText = contador;
+      }
+
+      const input = document.getElementById('inputCor');
+
+    input.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+    const cor = input.value;
+    document.body.style.backgroundColor = cor;
+     }
+     })
+      const form = document.getElementById('meuFormulario');
+      const resultado = document.getElementById('resultado');
+
+      form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Impede o recarregamento da página
+
+        const nome = document.getElementById('nome').value;
+        const email = document.getElementById('email').value;
+        const mensagem = document.getElementById('mensagem').value;
+
+        resultado.innerHTML = `
+          <p><strong>Nome:</strong> ${nome}</p>
+          <p><strong>E-mail:</strong> ${email}</p>
+          <p><strong>Mensagem:</strong> ${mensagem}</p>
+        `;
+      });
+    </script>
+</body>
+</html>
